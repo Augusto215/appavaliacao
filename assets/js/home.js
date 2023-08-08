@@ -52,11 +52,11 @@ $(function() {
     container.swipe({
         swipeLeft: function() {
             // Swipe para a esquerda: mover para a próxima seção
-            container.animate({ scrollLeft: '+=100vw' }, 900);
+            container.animate({ scrollLeft: '+=100vw' }, 150);
         },
         swipeRight: function() {
             // Swipe para a direita: mover para a seção anterior
-            container.animate({ scrollLeft: '-=100vw' }, 900);
+            container.animate({ scrollLeft: '-=100vw' }, 150);
         }
     });
 });
