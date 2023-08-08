@@ -1,0 +1,17 @@
+img
+{
+    max-height: 12rem;
+}
+
+
+#container {
+    display: flex;
+    overflow: hidden;
+    width: 100vw; /* Largura total da viewport */
+    height: 100vh; /* Altura total da viewport */
+}
+
+.section {
+    width: 100vw; /* Largura total da viewport */
+    height: 100vh; /* Altura total da viewport */
+}

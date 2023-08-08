@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Imagens</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
+
+</head>
+<body>
+
+    <div id="container">
+        <div class="section" id="section1">
+            <!-- Conteúdo da seção 1 -->
+        
+    
+    <div class="container p-3" id="somaDiv">
+        Soma: <span id="soma">0</span>
+    </div>
+
+    <div class="container p-3" >
+    <img id="imagem" src="/assets/image/smart-tv.png" alt="Imagem para avaliar" />
+    <div id="pontuacaoDiv">
+        Pontuação: <span id="pontuacao">0</span>
+    </div>
+    <button onclick="avaliar(true)">Avaliar Positivo</button>
+    <button onclick="avaliar(true)">Avaliar Negativo</button>
+
+</div>
+
+
+    <div class="modal fade" id="meuModal" tabindex="-1" role="dialog" aria-labelledby="meuModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="meuModalLabel">Avaliação Concluída</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Você avaliou 10 vezes!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+    </div>
+
+
+    <div class="section" id="section2">
+        <p> Teste </p>
+    </div>
+
+
+    </div>
+
+
+
+
+    <script src="/assets/js/home.js"></script>
+</body>
+</html>
