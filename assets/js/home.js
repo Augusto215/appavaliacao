@@ -27,7 +27,7 @@ function avaliar(positivo) {
         }
     });
 
-    if (contagemCliques >= 10) {
+    if (contagemCliques >= 50) {
         $('#meuModal').modal('show'); // Exibe o modal se o botão foi pressionado 10 vezes
     }
 }
@@ -52,11 +52,11 @@ $(function() {
     container.swipe({
         swipeLeft: function() {
             // Swipe para a esquerda: mover para a próxima seção
-            container.animate({ scrollLeft: '+=100vw' }, 300);
+            container.animate({ scrollLeft: '+=100vw' }, 900);
         },
         swipeRight: function() {
             // Swipe para a direita: mover para a seção anterior
-            container.animate({ scrollLeft: '-=100vw' }, 300);
+            container.animate({ scrollLeft: '-=100vw' }, 900);
         }
     });
 });
