@@ -5,13 +5,14 @@ img
 
 
 #container {
+    overflow-x: hidden;
+    width: 100vw;
     display: flex;
-    overflow: hidden;
-    width: 100vw; /* Largura total da viewport */
-    height: 100vh; /* Altura total da viewport */
+    height: 100vh;
 }
 
 .section {
-    width: 100vw; /* Largura total da viewport */
-    height: 100vh; /* Altura total da viewport */
+    min-width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
 }
