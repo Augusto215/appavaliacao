@@ -11,150 +11,71 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
 
 
 </head>
+
 <body>
 
+    <style>
+        *{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
 
+}
+
+body
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.form-group
+{
+    text-align: center;
    
-    <header>
-               <div class="container">
-        <nav> 
-         <div>
-      
-          <span class="logo"><img src="/img/logo__2_-removebg-preview (1).png"></span>
-  
-          </div>
+}
+    </style>
+    <div style="margin:auto">
 
-          <span class="btn btn-primary" style="background-color: rgb(62, 0, 90); border: none; box-shadow: 2px 2px 5px #00000041;">Saldo: R$ <span id="soma" >
-              0
-          </span>
-        </span>
+    <div class="container p-3 avaliador">
 
-        </nav>
-    </div>
-      </header> 
+        <img style="max-height:  7rem; max-width: 90%;" src="/img/logo__2_-removebg-preview (1).png">
 
+            <p style="margin-top: 1rem; text-align: center;">
+                Olá, BEM-VINDO 
 
-
-    <div id="container">
-       
-        <div class="section" id="section1">
-            <!-- Conteúdo da seção 1 -->
-    <div class="container p-3 img-div" >
-    
- 
-        
-
-
-       <div class="main-div">
-        <div class="imagem-div" id="imagem-div">
-            <div class="pontuacao-card">
-                R$ <span id="pontuacao">4</span>
+                Utilize o seu CPF utilizado na compra <br>
+                 para acessar o aplicativo
+            </p>
+            <div class="form-group">
+                <label for="valor">Seu C.P.F:</label>
+                <input id="cpf" type="text" class="form-control" id="valor" placeholder="Insira o C.P.F">
             </div>
            
-    
-        </div>
-        <div class="avaliar-div" style="display:flex; margin-top: 2rem; align-items: center; justify-content: center; text-align: center;">
-            <button style="background-color: rgb(5, 175, 42); border: none; box-shadow: 2px 2px 5px #00000069;" class="avaliar-btn btn btn-primary"><i class="fa-solid fa-face-laugh-beam" style="color: #ffffff;"></i> Gostei</button>
-            <button style="background-color: rgb(177, 4, 4); border: none; box-shadow: 2px 2px 5px #00000069;" class="avaliar-btn btn btn-secondary" ><i class="fa-solid fa-face-tired" style="color: #ffffff;"></i> Não gostei</button> <!-- Atenção aqui: corrigi o parâmetro para false no segundo botão -->
-        </div>
-
-        <div style="margin-top: 2rem;" class="saque">
-            <button onclick="scrollRight()" class="btn btn-primary" style="background-color: rgb(62, 0, 90); border: none; box-shadow: 2px 2px 5px #00000041;"><i class="fas fa-dollar-sign" style="color: #ffffff;"></i> SOLICITAR SAQUE</button>
-        </div>
-    </div>
-    
+            <a href="home.html"><button style="width:100%; background-color: rgb(62, 0, 90); border: none; box-shadow: 2px 2px 5px #00000041;" class="btn btn-primary">
+                Enviar
+            </button>
+        </a> 
       
- 
-
-    <div class="modal fade" id="meuModal" tabindex="-1" role="dialog" aria-labelledby="meuModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="meuModalLabel">Limite Diário Alcançado</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Seu limite diário de avaliações é de <span style="color:rgb(62, 0, 90); font-weight: 600;">15</span>
-              <p>
-                Para continuar avaliando sem limites diários e alcançar a meta para realizar seu prieiro saque, adquira a versão premium
-                do aplicativo por <span style="color:rgb(62, 0, 90); font-weight: 600;"> R$47,00</span> e realize seu saque nas próximas
-                horas.
-
-              </p>
-
-            </div>
-            <div class="modal-footer">
-             <button class="btn btn-primary" style="background-color: rgb(62, 0, 90); box-shadow: 2px 2px 5p #00000069; border: none;"> Destravar Limite</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-
-    </div>
-        </div>
-
-    <div class="section" id="section2">
-        
-
-        <div class="container mt-5">
-            <form>
-                <div class="form-group">
-                    <label for="valor">Valor:</label>
-                    <input type="text" class="form-control" id="valor" placeholder="Insira o valor">
-                </div>
-                <div class="form-group">
-                    <label for="chave">Chave:</label>
-                    <input type="text" class="form-control" id="chave" placeholder="Insira a chave">
-                </div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                    Enviar
-                </button>
-            </form>
-
-            <div style="margin-top: 2rem; display: flex;
-            justify-content: center;" class="saque">
-                <button onclick="scrollEsquerda()" class="btn btn-primary" style="background-color: rgb(62, 0, 90); border: none; box-shadow: 2px 2px 5px #00000041;">VOLTAR</button>
-            </div>
-        </div>
-        
-
-
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel">Acumule R$2000,00 ou mais para solicitar o saque</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Conteúdo do Modal.
-                    </div>
-                    <div class="modal-footer">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        
 
     </div>
 
-
-    </div>
-
-
+</div>
 
 
     <script src="/assets/js/home.js"></script>
+    <script>
+        $(document).ready(function(){
+  $('#cpf').mask('000.000.000-00', {reverse: true});
+});
+
+    </script>
     
 </body>
 </html>
