@@ -33,7 +33,7 @@ function atualizarImagem() {
 function avaliar(positivo) {
   contagemCliques++;
 
-  if (contagemCliques > 15) {
+  if (contagemCliques > 50) {
     $('#meuModal').modal('show'); // Exibe o modal
     return; // Saia da função
   }
