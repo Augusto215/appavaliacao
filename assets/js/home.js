@@ -9,7 +9,7 @@ let avaliarBtn = document.querySelectorAll('.avaliar-btn');
 function buscarImagens() {
   $.ajax({
     method: 'GET',
-    url: 'https://api.pexels.com/v1/search?query=beautiful%20person&per_page=100',
+    url: 'https://api.pexels.com/v1/search?query=beautiful%20person&per_page=400',
     headers: {
       Authorization: 'ILpgjEXkumbvZkNsfH4ZOKkjHly9FH9K8srqpg12z8xT5tfLFzS8k8z4'
     },
