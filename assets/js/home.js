@@ -1,21 +1,24 @@
-const imagens = ['/assets/image/android.png', '/assets/image/smart-tv.png', '/assets/image/windows.png'];
 let indiceImagem = 0;
 let soma = 0;
 let contagemCliques = 0;
 let img = [];
 let indiceAtual = 0;
 let avaliarBtn = document.querySelectorAll('.avaliar-btn');
+let podeClicar = true;
 
-function buscarImagens() {
+function buscarImagens(page = 1) {
+  const perPage = 100;
   $.ajax({
     method: 'GET',
-    url: 'https://api.pexels.com/v1/search?query=beautiful%20person&per_page=400',
+    url: `https://api.pexels.com/v1/search?query=outfit&per_page=${perPage}&page=${page}`,
     headers: {
       Authorization: 'ILpgjEXkumbvZkNsfH4ZOKkjHly9FH9K8srqpg12z8xT5tfLFzS8k8z4'
     },
     success: function(data) {
-      img = data.photos.map(photo => photo.src.large);
-      atualizarImagem();
+      img = img.concat(data.photos.map(photo => photo.src.large));
+      if (data.next_page) {
+        buscarImagens(page + 1);
+      }
     },
     error: function(err) {
       console.log('Erro ao buscar imagem', err);
@@ -31,37 +34,36 @@ function atualizarImagem() {
 }
 
 function avaliar(positivo) {
+  if (!podeClicar) return;
+
+  podeClicar = false;
+  setTimeout(() => {
+    podeClicar = true;
+  }, 1000); // Atraso de 1 segundo entre os cliques
+
   contagemCliques++;
 
   if (contagemCliques > 50) {
-    $('#meuModal').modal('show'); // Exibe o modal
-    return; // Saia da função
+    $('#meuModal').modal('show');
+    return;
   }
 
   let pontuacao = 1 + Math.random();
-
-  if (!positivo) {
-    pontuacao = pontuacao;
-  }
-
   soma += pontuacao;
-
-
-  document.getElementById('pontuacao').textContent = pontuacao.toFixed(2); // Exibe com duas casas decimais
-  document.getElementById('soma').textContent = soma.toFixed(2); // Exibe com duas casas decimais
-
+  document.getElementById('pontuacao').textContent = pontuacao.toFixed(2);
+  document.getElementById('soma').textContent = soma.toFixed(2);
 
   if (contagemCliques >= 50) {
-    $('#meuModal').modal('show'); // Exibe o modal se o botão foi pressionado 10 vezes
+    $('#meuModal').modal('show');
   }
 
   if (img.length) {
-    atualizarImagem(); // Atualize a imagem após a avaliação
+    atualizarImagem();
   }
 }
 
 $(document).ready(function() {
-  buscarImagens();
+  buscarImagens(1);
   avaliarBtn.forEach((btn) => {
     btn.addEventListener('click', function() {
       const positivo = this.classList.contains('btn-primary');
@@ -74,45 +76,17 @@ const container = document.getElementById('container');
 const hammer = new Hammer(container);
 
 hammer.on('swipeleft', function() {
-  // Lógica para deslizar para a esquerda
-  container.scrollLeft += 2000; // Ajuste conforme necessário
+  container.scrollLeft += 2000;
 });
 
 hammer.on('swiperight', function() {
-  // Lógica para deslizar para a direita
-  container.scrollLeft -= 2000; // Ajuste conforme necessário
+  container.scrollLeft -= 2000;
 });
-
-
 
 function scrollEsquerda() {
-
-    container.scrollLeft -= 2000; // Ajuste conforme necessário
-  }
-  
-
-
-function scrollRight() {
-
-  container.scrollLeft += 2000; // Ajuste conforme necessário
+  container.scrollLeft -= 2000;
 }
 
-
-
-
-$.ajax({
-  method: 'GET',
-  url: 'https://api.pexels.com/v1/search?query=person&per_page=10',
-  headers: {
-    Authorization: 'ILpgjEXkumbvZkNsfH4ZOKkjHly9FH9K8srqpg12z8xT5tfLFzS8k8z4'
-  },
-  success: function(data, textStatus, request) {
-    const limiteTotal = request.getResponseHeader('X-Ratelimit-Limit');
-    const solicitaçõesRestantes = request.getResponseHeader('X-Ratelimit-Remaining');
-    console.log(`Limite total: ${limiteTotal}`);
-    console.log(`Solicitações restantes: ${solicitaçõesRestantes}`);
-  },
-  error: function(err) {
-    console.log('Erro ao buscar imagem', err);
-  }
-});
+function scrollRight() {
+  container.scrollLeft += 2000;
+}
