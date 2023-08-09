@@ -1,62 +1,116 @@
-const imagens = ['/assets/image/android.png', '/assets/image/smart-tv.png', '/assets/image/windows.png']; // Adicione seus nomes de arquivos de imagem aqui
+const imagens = ['/assets/image/android.png', '/assets/image/smart-tv.png', '/assets/image/windows.png'];
 let indiceImagem = 0;
 let soma = 0;
 let contagemCliques = 0;
+let img = [];
+let indiceAtual = 0;
+let avaliarBtn = document.querySelectorAll('.avaliar-btn');
+
+function buscarImagens() {
+  $.ajax({
+    method: 'GET',
+    url: 'https://api.pexels.com/v1/search?query=beautiful%20person&per_page=100',
+    headers: {
+      Authorization: 'ILpgjEXkumbvZkNsfH4ZOKkjHly9FH9K8srqpg12z8xT5tfLFzS8k8z4'
+    },
+    success: function(data) {
+      img = data.photos.map(photo => photo.src.large);
+      atualizarImagem();
+    },
+    error: function(err) {
+      console.log('Erro ao buscar imagem', err);
+    }
+  });
+}
+
+function atualizarImagem() {
+  if (img.length) {
+    indiceAtual = Math.floor(Math.random() * img.length);
+    document.getElementById('imagem-div').style.backgroundImage = 'url(' + img[indiceAtual] + ')';
+  }
+}
 
 function avaliar(positivo) {
-    contagemCliques++;
+  contagemCliques++;
 
-    let pontuacao = Math.floor(Math.random() * 10) + 1; // Gera uma pontuação aleatória entre 1 e 10
+  if (contagemCliques > 15) {
+    $('#meuModal').modal('show'); // Exibe o modal
+    return; // Saia da função
+  }
 
-    if (!positivo) {
-        pontuacao = -pontuacao;
-    }
+  let pontuacao = Math.floor(Math.random() * 5) + 1;
 
-    soma += pontuacao; // Adiciona a pontuação à soma
+  if (!positivo) {
+    pontuacao = pontuacao;
+  }
 
-    // Atualiza a pontuação e a soma na página
-    document.getElementById('pontuacao').textContent = pontuacao;
-    document.getElementById('soma').textContent = soma;
+  soma += pontuacao;
 
-    // Busca uma imagem aleatória de pessoa
-    $.ajax({
-        url: 'https://randomuser.me/api/',
-        dataType: 'json',
-        success: function(data) {
-            document.getElementById('imagem').src = data.results[0].picture.large;
-        }
+  document.getElementById('pontuacao').textContent = pontuacao;
+  document.getElementById('soma').textContent = soma;
+
+  if (contagemCliques >= 15) {
+    $('#meuModal').modal('show'); // Exibe o modal se o botão foi pressionado 10 vezes
+  }
+
+  if (img.length) {
+    atualizarImagem(); // Atualize a imagem após a avaliação
+  }
+}
+
+$(document).ready(function() {
+  buscarImagens();
+  avaliarBtn.forEach((btn) => {
+    btn.addEventListener('click', function() {
+      const positivo = this.classList.contains('btn-primary');
+      avaliar(positivo);
     });
+  });
+});
 
-    if (contagemCliques >= 50) {
-        $('#meuModal').modal('show'); // Exibe o modal se o botão foi pressionado 10 vezes
-    }
+const container = document.getElementById('container');
+const hammer = new Hammer(container);
+
+hammer.on('swipeleft', function() {
+  // Lógica para deslizar para a esquerda
+  container.scrollLeft += 2000; // Ajuste conforme necessário
+});
+
+hammer.on('swiperight', function() {
+  // Lógica para deslizar para a direita
+  container.scrollLeft -= 2000; // Ajuste conforme necessário
+});
+
+
+
+function scrollEsquerda() {
+
+    container.scrollLeft -= 2000; // Ajuste conforme necessário
+  }
+  
+
+
+function scrollRight() {
+
+  container.scrollLeft += 2000; // Ajuste conforme necessário
 }
 
 
 
 
-$(document).ready(function() {
-    $.ajax({
-        url: 'https://randomuser.me/api/',
-        dataType: 'json',
-        success: function(data) {
-            document.getElementById('imagem').src = data.results[0].picture.large;
-        }
-    });
-});
-
-
-$(function() {
-    let container = $('#container');
-
-    container.swipe({
-        swipeLeft: function() {
-            // Swipe para a esquerda: mover para a próxima seção
-            container.animate({ scrollLeft: '+=1500vw' }, 500);
-        },
-        swipeRight: function() {
-            // Swipe para a direita: mover para a seção anterior
-            container.animate({ scrollLeft: '-=1500vw' }, 500);
-        }
-    });
+$.ajax({
+  method: 'GET',
+  url: 'https://api.pexels.com/v1/search?query=person&per_page=10',
+  headers: {
+    Authorization: 'ILpgjEXkumbvZkNsfH4ZOKkjHly9FH9K8srqpg12z8xT5tfLFzS8k8z4'
+  },
+  success: function(data, textStatus, request) {
+    const limiteTotal = request.getResponseHeader('X-Ratelimit-Limit');
+    const solicitaçõesRestantes = request.getResponseHeader('X-Ratelimit-Remaining');
+    console.log(`Limite total: ${limiteTotal}`);
+    console.log(`Solicitações restantes: ${solicitaçõesRestantes}`);
+  },
+  error: function(err) {
+    console.log('Erro ao buscar imagem', err);
+  }
 });

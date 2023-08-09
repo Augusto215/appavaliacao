@@ -1,0 +1,127 @@
+.fb-comments {
+    border: 1px solid #e9ebee!important;
+    border-radius: 18px;
+    padding: 12px;
+    margin: auto;
+    position: relative;
+    color: #888;
+}
+
+.fb-comments {
+    background-color: #fff!important;
+    border: 2px solid #e9ebee!important;
+}
+
+.fb-comments {
+    font-family: Helvetica,sans-serif;
+}
+
+.fb-comments-header {
+    padding: 0;
+    border-bottom: 1px solid #e9ebee!important;
+}
+
+.fb-comments-header span {
+    color: #000;
+    font-weight: 700;
+    font-size: .9em;
+}
+
+.fb-comments-comment {
+    border: none!important;
+    padding: 0;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.fb-comments-comment-img {
+    vertical-align: top;
+    width: 48px;
+    padding-right: 5px;
+}
+
+.fb-comments-comment-img img {
+    max-width: 48px;
+    max-height: 48px;
+    border-radius: 25px;
+    object-fit: cover;
+}
+
+.fb-comments-comment-text {
+    font-weight: 400;
+    font-size: .9em;
+    color: #050505;
+    border-radius: 21px;
+    background-color: #f0f2f5!important;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 8px;
+}
+
+.fb-comments-comment-name {
+    font-size: .9em;
+}
+
+.fb-comments-comment-name name {
+    color: #365899;
+    text-decoration: none!important;
+    font-weight: 700;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.fb-comments-comment-actions {
+    padding: 0 2px!important;
+}
+
+.fb-comments-comment-actions like, .fb-comments-comment-actions reply {
+    font-size: .75em;
+    color: #888;
+    font-weight: 600;
+    text-decoration: none!important;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.fb-comments-comment-actions like, .fb-comments-comment-actions reply {
+    font-size: .75em;
+    color: #888;
+    font-weight: 600;
+    text-decoration: none!important;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.fb-comments-comment-actions likes {
+    font-size: 13px;
+    background: url('/img/likes.png');
+    background-repeat: no-repeat;
+    padding-left: 43px;
+    padding-right: 6px;
+    padding-top: 3px;
+    padding-bottom: 2px;
+    margin-top: -10px;
+    float: right;
+    background-color: #fff!important;
+    border: solid #eaebef;
+    border-radius: 19px;
+}
+
+.fb-comments-comment-actions date {
+    font-size: .75em;
+    color: #90949c;
+    text-decoration: none;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.fb-comments-reply-wrapper {
+    margin-left: 60px;
+    border-left: 1px dotted #e9ebee!important;
+    padding-left: 5px;
+}
+
+h4.fakebook {
+    font-size: 1.25vw;
+    font-weight: bold;
+}

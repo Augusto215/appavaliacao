@@ -6,48 +6,90 @@
     <title>Avaliação de Imagens</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
 
 </head>
 <body>
 
+
+   
+    <header>
+               <div class="container">
+        <nav> 
+         <div>
+      
+          <span class="logo"><img src="/img/logo__2_-removebg-preview (1).png"></span>
+  
+          </div>
+
+          <span class="btn btn-primary" style="background-color: rgb(62, 0, 90); border: none; box-shadow: 2px 2px 5px #00000041;">Saldo: R$ <span id="soma" >
+              0
+          </span>
+        </span>
+
+        </nav>
+    </div>
+      </header> 
+
+
+
     <div id="container">
+       
         <div class="section" id="section1">
             <!-- Conteúdo da seção 1 -->
-        
+    <div class="container p-3 img-div" >
     
  
-        Soma: <span id="soma">0</span>
+        
 
 
+       <div class="main-div">
+        <div class="imagem-div" id="imagem-div">
+            <div class="pontuacao-card">
+                R$ <span id="pontuacao">4</span>
+            </div>
+           
+    
+        </div>
+        <div class="avaliar-div" style="display:flex; margin-top: 2rem; align-items: center; justify-content: center; text-align: center;">
+            <button style="background-color: rgb(5, 175, 42); border: none; box-shadow: 2px 2px 5px #00000069;" class="avaliar-btn btn btn-primary"><i class="fa-solid fa-face-laugh-beam" style="color: #ffffff;"></i> Gostei</button>
+            <button style="background-color: rgb(177, 4, 4); border: none; box-shadow: 2px 2px 5px #00000069;" class="avaliar-btn btn btn-secondary" ><i class="fa-solid fa-face-tired" style="color: #ffffff;"></i> Não gostei</button> <!-- Atenção aqui: corrigi o parâmetro para false no segundo botão -->
+        </div>
 
-    <img id="imagem" src="/assets/image/smart-tv.png" alt="Imagem para avaliar" />
-    <div id="pontuacaoDiv">
-        Pontuação: <span id="pontuacao">0</span>
+        <div style="margin-top: 2rem;" class="saque">
+            <button onclick="scrollRight()" class="btn btn-primary" style="background-color: rgb(62, 0, 90); border: none; box-shadow: 2px 2px 5px #00000041;"><i class="fas fa-dollar-sign" style="color: #ffffff;"></i> SOLICITAR SAQUE</button>
+        </div>
     </div>
-    <button onclick="avaliar(true)">Avaliar Positivo</button>
-    <button onclick="avaliar(true)">Avaliar Negativo</button>
-
-
-
+    
+      
+ 
 
     <div class="modal fade" id="meuModal" tabindex="-1" role="dialog" aria-labelledby="meuModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="meuModalLabel">Avaliação Concluída</h5>
+              <h5 class="modal-title" id="meuModalLabel">Limite Diário Alcançado</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              Você avaliou 10 vezes!
+              Seu limite diário de avaliações é de <span style="color:rgb(62, 0, 90); font-weight: 600;">15</span>
+              <p>
+                Para continuar avaliando sem limites diários e alcançar a meta para realizar seu prieiro saque, adquira a versão premium
+                do aplicativo por <span style="color:rgb(62, 0, 90); font-weight: 600;"> R$47,00</span> e realize seu saque nas próximas
+                horas.
+
+              </p>
+
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+             <button class="btn btn-primary" style="background-color: rgb(62, 0, 90); box-shadow: 2px 2px 5p #00000069; border: none;"> Destravar Limite</button>
             </div>
           </div>
         </div>
@@ -56,10 +98,55 @@
 
 
     </div>
-
+        </div>
 
     <div class="section" id="section2">
-        <p> Teste </p>
+        
+
+        <div class="container mt-5">
+            <form>
+                <div class="form-group">
+                    <label for="valor">Valor:</label>
+                    <input type="text" class="form-control" id="valor" placeholder="Insira o valor">
+                </div>
+                <div class="form-group">
+                    <label for="chave">Chave:</label>
+                    <input type="text" class="form-control" id="chave" placeholder="Insira a chave">
+                </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    Enviar
+                </button>
+            </form>
+
+            <div style="margin-top: 2rem; display: flex;
+            justify-content: center;" class="saque">
+                <button onclick="scrollEsquerda()" class="btn btn-primary" style="background-color: rgb(62, 0, 90); border: none; box-shadow: 2px 2px 5px #00000041;">VOLTAR</button>
+            </div>
+        </div>
+        
+
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Título do Modal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Conteúdo do Modal.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
     </div>
 
 
@@ -69,5 +156,6 @@
 
 
     <script src="/assets/js/home.js"></script>
+    
 </body>
 </html>
