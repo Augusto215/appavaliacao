@@ -38,7 +38,7 @@ function avaliar(positivo) {
     return; // Saia da função
   }
 
-  let pontuacao = Math.floor(Math.random() * 5) + 1;
+  let pontuacao = 1 + Math.random();
 
   if (!positivo) {
     pontuacao = pontuacao;
@@ -46,10 +46,12 @@ function avaliar(positivo) {
 
   soma += pontuacao;
 
-  document.getElementById('pontuacao').textContent = pontuacao;
-  document.getElementById('soma').textContent = soma;
 
-  if (contagemCliques >= 15) {
+  document.getElementById('pontuacao').textContent = pontuacao.toFixed(2); // Exibe com duas casas decimais
+  document.getElementById('soma').textContent = soma.toFixed(2); // Exibe com duas casas decimais
+
+
+  if (contagemCliques >= 50) {
     $('#meuModal').modal('show'); // Exibe o modal se o botão foi pressionado 10 vezes
   }
 
