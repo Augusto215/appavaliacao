@@ -11,6 +11,9 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
 
 
 </head>
@@ -106,8 +109,8 @@
         <div class="container mt-5">
             <form>
                 <div class="form-group">
-                    <label for="valor">Valor:</label>
-                    <input type="text" class="form-control" id="valor" placeholder="Insira o valor">
+                    <label for="dinheiro">Valor:</label>
+                    <input type="text" class="form-control" id="dinheiro" placeholder="Insira o valor">
                 </div>
                 <div class="form-group">
                     <label for="chave">Chave:</label>
@@ -130,13 +133,13 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel">Acumule R$2000,00 ou mais para solicitar o saque</h5>
+                        <h5 class="modal-title" id="myModalLabel">Saldo Insuficiente:</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Conteúdo do Modal.
+                        Acumule R$2000,00 ou mais para solicitar o saque
                     </div>
                     <div class="modal-footer">
                         
@@ -155,6 +158,12 @@
 
 
     <script src="/assets/js/home.js"></script>
+    <script>
+        $(document).ready(function(){
+  $('#dinheiro').mask('R$ 000.000.000.000.000,00', {reverse: true});
+});
+
+    </script>
     
 </body>
 </html>
