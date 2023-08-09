@@ -39,7 +39,7 @@ function avaliar(positivo) {
   podeClicar = false;
   setTimeout(() => {
     podeClicar = true;
-  }, 1000); // Atraso de 1 segundo entre os cliques
+  }, 1350); // Atraso de 1 segundo entre os cliques
 
   contagemCliques++;
 
