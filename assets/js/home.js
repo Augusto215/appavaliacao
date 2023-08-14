@@ -1,8 +1,11 @@
 let indiceImagem = 0;
-let soma = 0;
-let contagemCliques = 0;
+let soma = parseFloat(localStorage.getItem('soma')) || 0; // Recupera a soma do localStorage
+let contagemCliques = parseInt(localStorage.getItem('contagemCliques')) || 0; // Recupera a contagem de cliques do localStorage
 let img = [];
 let indiceAtual = 0;
+let pontuacaoSalva = parseFloat(localStorage.getItem('pontuacao')) || 0;
+document.getElementById('pontuacao').textContent = pontuacaoSalva.toFixed(2);
+document.getElementById('soma').textContent = soma.toFixed(2);
 let avaliarBtn = document.querySelectorAll('.avaliar-btn');
 let podeClicar = true;
 
@@ -43,6 +46,9 @@ function avaliar(positivo) {
 
   contagemCliques++;
 
+  // Salva a contagem de cliques no localStorage
+  localStorage.setItem('contagemCliques', contagemCliques);
+
   if (contagemCliques > 50) {
     $('#meuModal').modal('show');
     return;
@@ -50,6 +56,13 @@ function avaliar(positivo) {
 
   let pontuacao = 1 + Math.random();
   soma += pontuacao;
+
+  // Salva a soma no localStorage
+  localStorage.setItem('soma', soma);
+  localStorage.setItem('pontuacao', pontuacao);
+  localStorage.setItem('indiceImagem', indiceAtual); // Salva o índice da imagem atual
+
+  
   document.getElementById('pontuacao').textContent = pontuacao.toFixed(2);
   document.getElementById('soma').textContent = soma.toFixed(2);
 
@@ -70,6 +83,11 @@ $(document).ready(function() {
       avaliar(positivo);
     });
   });
+  document.getElementById('soma').textContent = soma.toFixed(2);
+  if (contagemCliques >= 50) {
+    $('#meuModal').modal('show');
+  }
+  atualizarImagem();
 });
 
 const container = document.getElementById('container');

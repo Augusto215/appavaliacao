@@ -6,6 +6,10 @@ img
     border-radius: 12px;
 }
 
+a
+{
+    text-decoration: none !important;
+}
 
 .imagem-div {
     background-image: url('/assets/image/jasmin-chew-txy8AZU04iw-unsplash.jpg');
