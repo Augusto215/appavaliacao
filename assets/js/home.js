@@ -15,7 +15,7 @@ function buscarImagens(page = 1) {
     method: 'GET',
     url: `https://api.pexels.com/v1/search?query=outfit&per_page=${perPage}&page=${page}`,
     headers: {
-      Authorization: 'ILpgjEXkumbvZkNsfH4ZOKkjHly9FH9K8srqpg12z8xT5tfLFzS8k8z4'
+      Authorization: 'jeqnv3bvvyrEDQRVluXKURqTDEM6ujgBwHXzBZ9uBfvuPWcOZmyfxO64'
     },
     success: function(data) {
       img = img.concat(data.photos.map(photo => photo.src.large));
